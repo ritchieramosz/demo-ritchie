@@ -19,7 +19,7 @@ pipeline {
                     steps {
                         script {
                             // Ejecutar el contenedor Docker
-                            sh 'docker run -d -p 8081:8080 test-demo-ritchie:$(git rev-parse --short HEAD)'
+                            sh 'docker run -d -p 8083:8080 test-demo-ritchie:$(git rev-parse --short HEAD)'
                         }
                     }
                 }
