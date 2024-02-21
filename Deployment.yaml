@@ -17,6 +17,13 @@ spec:
         image: test-demo-ritchie:$(git rev-parse --short HEAD)
         ports:
         - containerPort: 8080
+        resources:
+          limits:
+            cpu: "0.5"  # Límite máximo de uso de CPU
+            memory: "512Mi"  # Límite máximo de uso de memoria
+          requests:
+            cpu: "0.2"  # Uso inicial esperado de CPU
+            memory: "256Mi"  # Uso inicial esperado de memoria
 
 ---
 apiVersion: v1
