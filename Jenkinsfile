@@ -15,28 +15,28 @@ pipeline {
                     }
         }
 
-        stage('Deploy to Kubernetes') {
-            steps {
-                script {
-            // Mostrar el contexto actual
-            sh 'kubectl config current-context'
+       // stage('Deploy to Kubernetes') {
+       //     steps {
+       //         script {
+       //     // Mostrar el contexto actual
+       //     sh 'kubectl config current-context'
+//
+       //     // Configurar el contexto a minikube
+       //     sh 'kubectl config use-context minikube'
+//
+       //     // Aplicar el archivo de Kubernetes
+       //     sh 'kubectl apply -f Deployment.yaml'
+       //         }
+       //     }
+       // }
 
-            // Configurar el contexto a minikube
-            sh 'kubectl config use-context minikube'
-
-            // Aplicar el archivo de Kubernetes
-            sh 'kubectl apply -f Deployment.yaml'
+                stage('Run Docker Container') {
+                    steps {
+                        script {
+                            // Ejecutar el contenedor Docker
+                            sh 'docker run -d -p 8083:8080 test-demo-ritchie:$(git rev-parse --short HEAD)'
+                        }
+                    }
                 }
-            }
-        }
-
-               // stage('Run Docker Container') {
-               //     steps {
-               //         script {
-               //             // Ejecutar el contenedor Docker
-               //             sh 'docker run -d -p 8083:8080 test-demo-ritchie:$(git rev-parse --short HEAD)'
-               //         }
-               //     }
-               // }
     }
 }
