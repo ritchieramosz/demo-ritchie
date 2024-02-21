@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-ritchie-deployment
+spec:
+  replicas: 3  # Aquí se define el número de réplicas
+  selector:
+    matchLabels:
+      app: demo-ritchie
+  template:
+    metadata:
+      labels:
+        app: demo-ritchie
+    spec:
+      containers:
+      - name: demo-ritchie-container
+        image: test-demo-ritchie:$(git rev-parse --short HEAD)
+        ports:
+        - containerPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-ritchie-service
+spec:
+  ports:
+  - port: 8087  # Puerto en el servicio
+    targetPort: 8080  # Puerto en el contenedor
+  selector:
+    app: demo-ritchie
