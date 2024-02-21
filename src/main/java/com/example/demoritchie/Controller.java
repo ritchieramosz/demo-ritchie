@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class Controller {
 @GetMapping
     public String Hola(){
-        return "Hola Mundo Soy Ricardo Ramos Vega próximo DevOps, Este es un experimento con el jdk y oracle linux";
+        return "Hola Mundo estoy enseñando devops a  futuros programadores";
     }
 }
