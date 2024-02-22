@@ -29,7 +29,7 @@ pipeline {
             steps {
                 script {
             // Mostrar el contexto actual
-            sh 'kubectl config current-context'
+            //sh 'kubectl config current-context'
 
             // Configurar el contexto a minikube
             sh 'kubectl config use-context minikube'
