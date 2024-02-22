@@ -15,30 +15,30 @@ pipeline {
                     }
         }
 
-        stage('Debug') {
-    steps {
-        script {
-            // Mostrar la configuración actual de kubectl
-            sh 'kubectl config view'
+    //            stage('Debug') {
+    //        steps {
+    //            script {
+    //                // Mostrar la configuración actual de kubectl
+    //                sh 'kubectl config view'
+    //            }
+    //        }
+    //    }
+
+
+        stage('Deploy to Kubernetes') {
+            steps {
+                script {
+            // Mostrar el contexto actual
+            sh 'kubectl config current-context'
+
+            // Configurar el contexto a minikube
+            sh 'kubectl config use-context minikube'
+
+            // Aplicar el archivo de Kubernetes
+            sh 'kubectl apply -f Deployment.yaml'
+                }
+            }
         }
-    }
-}
-
-
-      //  stage('Deploy to Kubernetes') {
-      //      steps {
-      //          script {
-      //      // Mostrar el contexto actual
-      //      sh 'kubectl config current-context'
-//
-      //      // Configurar el contexto a minikube
-      //      sh 'kubectl config use-context minikube'
-//
-      //      // Aplicar el archivo de Kubernetes
-      //      sh 'kubectl apply -f Deployment.yaml'
-      //          }
-      //      }
-      //  }
 
                // stage('Run Docker Container') {
                //     steps {
